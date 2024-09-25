@@ -1,4 +1,6 @@
 import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.Selenide;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -11,8 +13,7 @@ public class DragDropTest {
     @BeforeAll
     static void setUp() {
         Configuration.browserSize = "1920x1080";
-        Configuration.baseUrl = """
-                https://the-internet.herokuapp.com""";
+        Configuration.baseUrl = "https://the-internet.herokuapp.com";
         Configuration.pageLoadStrategy = "eager";
         // Configuration.holdBrowserOpen = true;
     }
@@ -35,6 +36,11 @@ public class DragDropTest {
         actions().dragAndDrop($("#column-a"), $("#column-b")).perform();
         $("#column-a").shouldHave(text("B"));
         $("#column-b").shouldHave(text("A"));
+    }
+
+    @AfterAll
+    static void afterAll() {
+        Selenide.closeWebDriver();
     }
 }
 

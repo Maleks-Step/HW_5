@@ -17,7 +17,7 @@ public class GHTest {
     }
 
     @Test
-    void EnterpriseTest() {
+    void enterpriseTest() {
         open("/enterprise");
         $(byTagAndText("button", "Solutions")).hover();
         $(byTagAndText("a","Enterprise")).click();
